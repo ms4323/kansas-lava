@@ -39,7 +39,7 @@ instance Functor EventList where
     fmap f (EL evs) = EL $ M.map f evs
 
 instance F.Foldable EventList where
-    foldr f z (EL m) = M.fold f z m
+    foldr f z (EL m) = M.foldr f z m
 
 {-
 instance (Show a) => Show (EventList a) where
@@ -151,4 +151,4 @@ mergeWith f ls = foldr1 (zipWith f) ls
 
 -- | Like foldr, but gives the clock value to the function.
 foldrWithTime :: ((Int,a) -> b -> b) -> b -> EventList a -> b
-foldrWithTime f z (EL m) = M.foldWithKey (curry f) z m
+foldrWithTime f z (EL m) = M.foldrWithKey (curry f) z m
